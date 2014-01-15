@@ -60,8 +60,6 @@ else
                     sample(ii).geom_moments(l,2) = 1000*2^-sample(ii).geom_moments(l,2);
                 end
                 
-                % changed by BL 1-14-2014 original was
-                % sample(ix).locations=[1:density:size(sample(ii).data,1)]
                 sample(ii).locations=[1:density:size(cell2mat(sample(ii).roi),1)];
                 
             else

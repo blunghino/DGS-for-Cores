@@ -49,8 +49,6 @@ if sample(ix).num_roi>0
         sample(ix).geom_moments(l,2) = 1000*2^-sample(ix).geom_moments(l,2);
     end
     
-    % changed by BL 1-14-2014 original was
-    % sample(ix).locations=[1:density:size(sample(ix).data,1)]
     sample(ix).locations=[1:density:size(cell2mat(sample(ix).roi),1)];
     
     h=findobj('Tag','plot_axes');
