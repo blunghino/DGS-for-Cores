@@ -37,7 +37,7 @@ if sample(ix).num_roi>0
     
     [dist,scale]=core_get_psd(sample(ix).roi{1},density,Args,ix);
     
-    [block_image, block_locations] = get_block_image(sample(ix).roi, dist)
+    [block_image, block_locations] = get_block_image(sample(ix).roi{1}, dist);
     
     [P,scale]=core_get_psd(block_image,1,Args,ix);
     
@@ -54,7 +54,7 @@ if sample(ix).num_roi>0
         sample(ix).geom_moments(l,2) = 1000*2^-sample(ix).geom_moments(l,2);
     end
     
-    sample(ix).locations=block_locations;
+    sample(ix).locations = block_locations;
        
     h=findobj('Tag','plot_axes');
     axes(h)
