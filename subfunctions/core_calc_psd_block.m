@@ -35,11 +35,9 @@ Args=struct('Pad',1,...      % pad the time series with zeroes (recommended)
 
 if sample(ix).num_roi>0
     
-    [dist,scale]=core_get_psd(sample(ix).roi{1},density,Args,ix);
+    [P,scale]=core_get_psd(sample(ix).roi{1},density,Args,ix);
     
-    [block_image, block_locations] = get_block_image(sample(ix).roi{1}, dist);
-    
-    [P,scale]=core_get_psd(block_image,1,Args,ix);
+    [P, block_locations] = block_distribution(P);
     
     sample(ix).dist=P;
     sample(ix).scale=scale.*sample(ix).resolution;
