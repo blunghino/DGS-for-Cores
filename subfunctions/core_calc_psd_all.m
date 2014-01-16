@@ -47,6 +47,8 @@ else
                 
                 [P,scale]=core_get_psd(sample(ii).roi{1},density,Args,ii);
                 
+                [P, block_locations] = block_distribution(P);
+                
                 sample(ii).dist=P;
                 sample(ii).scale=scale.*sample(ix).resolution;
                 
@@ -60,7 +62,7 @@ else
                     sample(ii).geom_moments(l,2) = 1000*2^-sample(ii).geom_moments(l,2);
                 end
                 
-                sample(ii).locations=[1:density:size(cell2mat(sample(ii).roi),1)];
+                sample(ii).locations = block_locations;
                 
             else
                 
