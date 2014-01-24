@@ -2,7 +2,7 @@
 % calc_psd
 % calculates PSD for each ROI
 % 
-% Written by Daniel Buscombe, various times in 2012 and 2013
+% Written by Daniel Buscombe, various times in 2012-2014
 % while at
 % School of Marine Science and Engineering, University of Plymouth, UK
 % then
@@ -25,6 +25,8 @@ dofilt=0;
 density=1;
 start_size=3;
 
+winsize = 50; % size of window in vertical direction
+
 MotherWav='Morlet';
 Args=struct('Pad',1,...      % pad the time series with zeroes (recommended)
     'Dj',1/8,... %8, ...    % this will do dj sub-octaves per octave
@@ -34,7 +36,7 @@ Args=struct('Pad',1,...      % pad the time series with zeroes (recommended)
 
 if sample(ix).num_roi>0
     
-    [P,scale]=core_get_psd(sample(ix).roi{1},density,Args,ix);
+    [vr,P,scale]=core_get_psd(sample(ix).roi{1},density,Args,ix,winsize);
     
     sample(ix).dist=P;
     sample(ix).scale=scale.*sample(ix).resolution;
@@ -43,19 +45,21 @@ if sample(ix).num_roi>0
     sample(ix).geom_moments=zeros(size(P,2),4);
     sample(ix).arith_moments=zeros(size(P,2),4);
     
-    for l=1:size(P,2)
+    for l=1:size(P,1)
         [sample(ix).percentiles(l,:),sample(ix).geom_moments(l,:),...
-            sample(ix).arith_moments(l,:)]=gsdparams(P(:,l),sample(ix).scale);
+            sample(ix).arith_moments(l,:)]=gsdparams(P(l,:),sample(ix).scale);
         sample(ix).geom_moments(l,2) = 1000*2^-sample(ix).geom_moments(l,2);
     end
     
-    sample(ix).locations=[1:density:size(cell2mat(sample(ix).roi),1)];
+    sample(ix).locations=linspace(1,size(sample(ix).data,1),size(P,1));
+    %[1:density:size(sample(ix).data,1)];
+    %[1:density:size(cell2mat(sample(ix).roi),1)];
     
     h=findobj('Tag','plot_axes');
     axes(h)
     cla(ax2)
     
-    pcolor(sample(ix).scale,sample(ix).locations,sample(ix).dist')
+    pcolor(sample(ix).scale,sample(ix).locations,sample(ix).dist)
     shading flat
     
     if sample(ix).resolution==1

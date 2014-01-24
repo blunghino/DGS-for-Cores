@@ -2,7 +2,7 @@
 % dgs_gui_swopsimages
 % callback for main program, swops images
 % 
-% Written by Daniel Buscombe, various times in 2012 and 2013
+% Written by Daniel Buscombe, various times in 2012-2014
 % while at
 % School of Marine Science and Engineering, University of Plymouth, UK
 % then
@@ -97,7 +97,7 @@ if ~isempty(sample(ix).dist)
     axes(h)
     cla(ax2)
     
-    pcolor(sample(ix).scale,sample(ix).locations,sample(ix).dist')
+    pcolor(sample(ix).scale,sample(ix).locations,sample(ix).dist)
     shading flat
     
     if sample(ix).resolution==1
