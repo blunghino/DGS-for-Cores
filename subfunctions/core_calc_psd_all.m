@@ -22,10 +22,10 @@
 %====================================
 
 dofilt=0;
-density=1;
+density=10;
 start_size=3;
 
-winsize = 50; % size of window in vertical direction
+winsize = 267; % size of window in vertical direction
 
 MotherWav='Morlet';
 Args=struct('Pad',1,...      % pad the time series with zeroes (recommended)

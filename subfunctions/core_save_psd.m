@@ -76,7 +76,7 @@ for ii=1:length(sample)
         else
             towrite=[num2cell([sample(ii).arith_moments,sample(ii).geom_moments,...
                 sample(ii).percentiles,...
-                nan(size(sample(ii).arith_moments,1),4),sample(ii).dist'])];
+                nan(size(sample(ii).arith_moments,1),4),sample(ii).dist])];
         end
         
         
