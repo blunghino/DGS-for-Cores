@@ -37,11 +37,11 @@ if ~isdir('outputs')
     mkdir(['outputs',filesep,'session'])
 end
 
-sessionID=now; % matlab time which becomes session's unique identifier
-% create and open log file and write header
-fid=fopen([pwd,filesep,'outputs',filesep,'session',filesep,'session',datestr(sessionID,30),'.txt'],'w');
-fprintf(fid,'%s\n',['%session began at ',datestr(sessionID,31)]);
-fprintf(fid,'%s\n','%------------------------');
+% sessionID=now; % matlab time which becomes session's unique identifier
+% % create and open log file and write header
+% fid=fopen([pwd,filesep,'outputs',filesep,'session',filesep,'session',datestr(sessionID,30),'.txt'],'w');
+% fprintf(fid,'%s\n',['%session began at ',datestr(sessionID,31)]);
+% fprintf(fid,'%s\n','%------------------------');
 
 screencol=rand(1,3);
 

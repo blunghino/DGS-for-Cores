@@ -36,7 +36,7 @@ Args=struct('Pad',1,...      % pad the time series with zeroes (recommended)
 
 if sample(ix).num_roi>0
     
-    [vr,P,scale]=core_get_psd(sample(ix).roi{1},density,Args,ix,winsize);
+    [P,scale]=core_get_psd(sample(ix).roi{1},density,Args,ix,winsize);
     
     sample(ix).dist=P;
     sample(ix).scale=scale.*sample(ix).resolution;
