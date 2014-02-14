@@ -69,11 +69,11 @@ if sample(ix).num_roi>0
     end
     ylabel('Row')
     axis tight
-    set(gca,'ydir','normal')
+    %set(gca,'ydir','normal')
     hold on
     plot(sample(ix).arith_moments(:,1),sample(ix).locations,...
         'r','linewidth',2)
-    set(gca,'xscale','log'), grid off
+    %set(gca,'xscale','log'), grid off
     
     
     axes(ax)
